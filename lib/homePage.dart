@@ -1,4 +1,5 @@
 
+import 'package:checkboxtest/selected_data.dart';
 import 'package:flutter/material.dart';
 
 class CheckBoxInListView extends StatefulWidget {
@@ -40,6 +41,8 @@ class _CheckBoxInListViewState extends State<CheckBoxInListView> {
             itemCount: _texts.length,
             itemBuilder: (context, index) {
               return CheckboxListTile(
+                
+
                 title: Text(_texts[index]),
                 value: _isChecked![index],
                 onChanged: (val) {
@@ -47,7 +50,7 @@ class _CheckBoxInListViewState extends State<CheckBoxInListView> {
                     () {
                       _isChecked![index] = val!;
                       if(_isChecked![index]==true){
-                         countdata.add(_isChecked![index]);
+                         countdata.add(_texts[index]);
                       }else{
                        countdata.length--;
                       }
@@ -63,8 +66,15 @@ class _CheckBoxInListViewState extends State<CheckBoxInListView> {
               
             },
           ),
+
+          ElevatedButton(onPressed: (){
+            print(countdata[1]);
+
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Selected(data: countdata,)));
+          }, child: Text("Send")),
           
-          Text(countdata.length.toString()),
+          Text(countdata.length.toString(),style: TextStyle(fontSize: 16),),
+        
        
 
        
